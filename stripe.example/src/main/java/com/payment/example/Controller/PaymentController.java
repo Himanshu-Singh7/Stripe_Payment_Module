@@ -17,12 +17,8 @@ public class PaymentController {
 
     @Value("${stripe.api.secretKey}")
     private String stripApiKey;
-
-
-
     @Autowired
     private ProductRepository productRepository;
-
     @Autowired
     private PaymentService paymentService;
 
@@ -30,10 +26,8 @@ public class PaymentController {
     @PostMapping("/initiate")
     public ResponseEntity<String> initiatePayment(@RequestParam Long productId)  {
        Product product = this.productRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product not found"));
-
-     String paymentIntentId =  this.paymentService.createPaymentIntent(product.getPrice());
-
-     return ResponseEntity.ok(paymentIntentId);
+       String paymentIntentId =  this.paymentService.createPaymentIntent(product.getPrice());
+       return ResponseEntity.ok(paymentIntentId);
     }
 
 }
