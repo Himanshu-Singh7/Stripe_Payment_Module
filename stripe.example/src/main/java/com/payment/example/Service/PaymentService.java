@@ -28,8 +28,7 @@ public class PaymentService {
         }catch (StripeException e){
             throw new RuntimeException("Error creating payment intent" , e);
         }
-
-    }
+     }
 
 //    public boolean confirmPayment(String paymentIntentId) throws StripeException {
 //        Stripe.apiKey = stripApiKey;
